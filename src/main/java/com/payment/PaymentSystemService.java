@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PaymentSystemService {
     
-    public PaymentSystem getPaymentSystem(int systemId){
+    public PaymentSystem getPaymentSystem3(int systemId){
         PaymentSystem[] values = PaymentSystem.values();
         PaymentSystem result = null;
         for(int i = 0 ; i <values.length ; i ++ ) {
@@ -27,7 +27,7 @@ public class PaymentSystemService {
         return result;
     }
 
-    public PaymentSystem getPaymentSystemStream(int systemId) {
+    public PaymentSystem getPaymentSystem(int systemId) {
         List<PaymentSystem> paymentSystems = Arrays.asList(PaymentSystem.values());
         return paymentSystems.stream()
                 .filter(paymentSystem -> paymentSystem.getSystemId() == systemId)
