@@ -1,5 +1,6 @@
 package com.payment;
 
+import com.payment.enums.PaymentSystem;
 import org.junit.Before;
 import org.junit.Test;
 
