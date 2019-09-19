@@ -20,7 +20,7 @@ public class App {
         app.processPayment();
     }
 
-    public void processPayment() {
+    private void processPayment() {
         userViewService.showMessage("How you want to pay?\n1.ApplePay\n2.GooglePay\n3.Visa\n");
 
         Integer systemId = userInputService.getUserInput();
@@ -32,29 +32,30 @@ public class App {
         priceService.validatePrice(price);
 
         userViewService.showMessage("Sending request to " + system);
-        
-        PaymentResult result = paymentService.getPaymentResult();
+
+        int numForResultGeneration = (int) (Math.random() + 1.5);
+        PaymentResult result = paymentService.getPaymentResult(numForResultGeneration);
 
         userViewService.showMessage("Result is: " + result.getResult());
     }
 
-    public void setPaymentService(PaymentService paymentService) {
+    private void setPaymentService(PaymentService paymentService) {
         this.paymentService = paymentService;
     }
 
-    public void setPaymentSystemService(PaymentSystemService paymentSystemService) {
+    private void setPaymentSystemService(PaymentSystemService paymentSystemService) {
         this.paymentSystemService = paymentSystemService;
     }
 
-    public void setPriceService(PriceService priceService) {
+    private void setPriceService(PriceService priceService) {
         this.priceService = priceService;
     }
 
-    public void setUserInputService(UserInputService userInputService) {
+    private void setUserInputService(UserInputService userInputService) {
         this.userInputService = userInputService;
     }
 
-    public void setUserViewService(UserViewService userViewService) {
+    private void setUserViewService(UserViewService userViewService) {
         this.userViewService = userViewService;
     }
 }

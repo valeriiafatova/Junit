@@ -2,7 +2,7 @@ package com.payment;
 
 public class PaymentService {
     
-    public PaymentResult getPaymentResult(){
-        return (int) (Math.random() + 1 ) == 1 ? PaymentResult.SUCCESS : PaymentResult.FAILURE;
+    public PaymentResult getPaymentResult(int numForResultGeneration){
+        return numForResultGeneration == 1 ? PaymentResult.SUCCESS : PaymentResult.FAILURE;
     }
 }
