@@ -23,17 +23,17 @@ public class App {
     public void processPayment() {
         userViewService.showMessage("How you want to pay?\n1.ApplePay\n2.GooglePay\n3.Visa\n");
 
-        Integer systemId = userInputService.getUserInput();
-        PaymentSystem system = paymentSystemService.getPaymentSystem(systemId);
+        Integer systemId = userInputService.getUserInput(); // возвращает инт, который ввел пользователь
+        PaymentSystem system = paymentSystemService.getPaymentSystem(systemId); //возвращает пейментсистемо из энума
 
         userViewService.showMessage("Enter total price: ");
-        Integer price = userInputService.getUserInput();
+        Integer price = userInputService.getUserInput(); // возвращает инт, который ввел пользователь
 
-        priceService.validatePrice(price);
+        priceService.validatePrice(price); // проверяет чтоб прайс был больше 0
 
         userViewService.showMessage("Sending request to " + system);
         
-        PaymentResult result = paymentService.getPaymentResult();
+        PaymentResult result = paymentService.getPaymentResult(1);
 
         userViewService.showMessage("Result is: " + result.getResult());
     }
