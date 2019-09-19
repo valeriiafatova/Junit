@@ -7,6 +7,7 @@ public class App {
     private PriceService priceService;
     private UserInputService userInputService;
     private UserViewService userViewService;
+    private double randomNumber;
 
     public static void main(String[] args) {
         App app = new App();
@@ -32,8 +33,9 @@ public class App {
         priceService.validatePrice(price);
 
         userViewService.showMessage("Sending request to " + system);
-        
-        PaymentResult result = paymentService.getPaymentResult();
+
+        randomNumber = Math.random() + 1.5;
+        PaymentResult result = paymentService.getPaymentResult((int) randomNumber);
 
         userViewService.showMessage("Result is: " + result.getResult());
     }
