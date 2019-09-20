@@ -32,8 +32,9 @@ public class App {
         priceService.validatePrice(price);
 
         userViewService.showMessage("Sending request to " + system);
-        
-        PaymentResult result = paymentService.getPaymentResult();
+
+        int isEnoughMoney = (int) (Math.random() + 1.5);
+        PaymentResult result = paymentService.getPaymentResult(isEnoughMoney);
 
         userViewService.showMessage("Result is: " + result.getResult());
     }
