@@ -32,8 +32,7 @@ public class PaymentServiceUnitTest
 				++counterFailure;
 			}
 
-			if (counterFailure > 0 && counterSuccess > 0)
-			{
+			if (counterFailure != 0 && counterSuccess != 0) {
 				result = true;
 				break;
 			}
