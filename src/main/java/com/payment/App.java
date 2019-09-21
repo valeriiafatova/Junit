@@ -1,5 +1,7 @@
 package com.payment;
 
+import java.util.Random;
+
 public class App {
 
     private PaymentService paymentService;
@@ -24,7 +26,7 @@ public class App {
         userViewService.showMessage("How you want to pay?\n1.ApplePay\n2.GooglePay\n3.Visa\n");
 
         Integer systemId = userInputService.getUserInput();
-        PaymentSystem system = paymentSystemService.getPaymentSystem(systemId);
+        PaymentSystem system = paymentService.getPaymentSystem(systemId);
 
         userViewService.showMessage("Enter total price: ");
         Integer price = userInputService.getUserInput();
@@ -32,8 +34,9 @@ public class App {
         priceService.validatePrice(price);
 
         userViewService.showMessage("Sending request to " + system);
-        
-        PaymentResult result = paymentService.getPaymentResult();
+
+        int numRand = getRandomNumb();
+        PaymentResult result = paymentService.getPaymentResult(numRand);
 
         userViewService.showMessage("Result is: " + result.getResult());
     }
@@ -44,6 +47,11 @@ public class App {
 
     public void setPaymentSystemService(PaymentSystemService paymentSystemService) {
         this.paymentSystemService = paymentSystemService;
+    }
+
+    public int getRandomNumb(){
+        Random random = new Random();
+        return random.ints(0,(1+1)).findFirst().getAsInt();
     }
 
     public void setPriceService(PriceService priceService) {
