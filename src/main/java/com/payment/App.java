@@ -24,7 +24,7 @@ public class App {
         userViewService.showMessage("How you want to pay?\n1.ApplePay\n2.GooglePay\n3.Visa\n");
 
         Integer systemId = userInputService.getUserInput();
-        PaymentSystem system = paymentSystemService.getPaymentSystem(systemId);
+        PaymentSystem system = paymentService.getPaymentSystem(systemId);
 
         userViewService.showMessage("Enter total price: ");
         Integer price = userInputService.getUserInput();
