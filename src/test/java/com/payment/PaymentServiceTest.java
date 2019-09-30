@@ -1,6 +1,7 @@
 package com.payment;
 
 
+import com.payment.impl.DefaultPaymentSystemService;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -9,7 +10,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertNotNull;
@@ -24,25 +24,25 @@ public class PaymentServiceTest {
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
     @Mock
-    private PaymentSystemService paymentSystemServiceMock;
+    private DefaultPaymentSystemService defaultPaymentSystemServiceMock;
     
-    private PaymentSystemService paymentSystemServiceStub1 
-            = new PaymentSystemService(){
+    private DefaultPaymentSystemService defaultPaymentSystemServiceStub1 
+            = new DefaultPaymentSystemService(){
         @Override
         public PaymentSystem getPaymentSystem(int systemId) {
             return systemId == 1 ? null : PaymentSystem.GOOGLE_PAY;
         }
     };
     
-    private PaymentSystemService getPaymentSystemServiceStub2 
-            = new PaymentSystemServiceStub();
+    private DefaultPaymentSystemService getDefaultPaymentSystemServiceStub2 
+            = new DefaultPaymentSystemServiceStub();
 
     @Before
     public void setUp() {
         //MockitoAnnotations.initMocks(instance);
         //instance.setPaymentSystemService(paymentSystemServiceMock);
-        Mockito.when(paymentSystemServiceMock.getPaymentSystem(anyInt())).thenReturn(PaymentSystem.GOOGLE_PAY);
-        Mockito.when(paymentSystemServiceMock.getPaymentSystem(1)).thenReturn(null);
+        Mockito.when(defaultPaymentSystemServiceMock.getPaymentSystem(anyInt())).thenReturn(PaymentSystem.GOOGLE_PAY);
+        Mockito.when(defaultPaymentSystemServiceMock.getPaymentSystem(1)).thenReturn(null);
     }
     
     @Test
@@ -68,7 +68,7 @@ public class PaymentServiceTest {
     }
 }
 
-class PaymentSystemServiceStub extends PaymentSystemService{
+class DefaultPaymentSystemServiceStub extends DefaultPaymentSystemService {
     @Override
     public PaymentSystem getPaymentSystem(int systemId) {
         return PaymentSystem.APPLE_PAY;

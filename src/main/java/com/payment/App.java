@@ -1,9 +1,11 @@
 package com.payment;
 
+import com.payment.impl.DefaultPaymentSystemService;
+
 public class App {
 
     private PaymentService paymentService;
-    private PaymentSystemService paymentSystemService;
+    private DefaultPaymentSystemService defaultPaymentSystemService;
     private PriceService priceService;
     private UserInputService userInputService;
     private UserViewService userViewService;
@@ -12,7 +14,7 @@ public class App {
         App app = new App();
         
         app.setPaymentService(new PaymentService());
-        app.setPaymentSystemService(new PaymentSystemService());
+        app.setDefaultPaymentSystemService(new DefaultPaymentSystemService());
         app.setPriceService(new PriceService());
         app.setUserInputService(new UserInputService());
         app.setUserViewService(new UserViewService());
@@ -42,8 +44,8 @@ public class App {
         this.paymentService = paymentService;
     }
 
-    public void setPaymentSystemService(PaymentSystemService paymentSystemService) {
-        this.paymentSystemService = paymentSystemService;
+    public void setDefaultPaymentSystemService(DefaultPaymentSystemService defaultPaymentSystemService) {
+        this.defaultPaymentSystemService = defaultPaymentSystemService;
     }
 
     public void setPriceService(PriceService priceService) {
