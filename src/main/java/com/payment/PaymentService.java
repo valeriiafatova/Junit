@@ -1,9 +1,15 @@
 package com.payment;
 
+import com.payment.impl.DefaultPaymentSystemService;
+
 import java.util.Arrays;
 
 public class PaymentService {
-    private PaymentSystemService paymentSystemService = new PaymentSystemService();
+    private PaymentSystemService paymentSystemService;
+
+    public PaymentService(PaymentSystemService paymentSystemService) {
+        this.paymentSystemService = paymentSystemService;
+    }
 
     public PaymentSystem getPaymentSystem(int systemId) {
         if(!validatePaymentSystemId2(systemId)){
@@ -48,7 +54,7 @@ public class PaymentService {
         return (int) (Math.random() + 1) == 1 ? PaymentResult.SUCCESS : PaymentResult.FAILURE;
     }
 
-    public void setPaymentSystemService(PaymentSystemService paymentSystemService) {
+    public void setPaymentSystemService(DefaultPaymentSystemService paymentSystemService) {
         this.paymentSystemService = paymentSystemService;
     }
 }

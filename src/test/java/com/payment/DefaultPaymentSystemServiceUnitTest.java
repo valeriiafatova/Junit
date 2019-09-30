@@ -1,5 +1,6 @@
 package com.payment;
 
+import com.payment.impl.DefaultPaymentSystemService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,13 +8,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-public class PaymentSystemServiceUnitTest {
+public class DefaultPaymentSystemServiceUnitTest {
 
-    private PaymentSystemService instance;
+    private DefaultPaymentSystemService instance;
 
     @Before
     public void setUp() {
-        instance = new PaymentSystemService();
+        instance = new DefaultPaymentSystemService();
     }
 
     @Test
