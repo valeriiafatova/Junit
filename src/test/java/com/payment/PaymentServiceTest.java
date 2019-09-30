@@ -5,17 +5,28 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Matchers.anyInt;
 
+@RunWith(MockitoJUnitRunner.class)
 public class PaymentServiceTest {
 
-    private PaymentService instance = new PaymentService();
+    @InjectMocks
+    private PaymentService instance;
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
+    @Mock
+    private PaymentSystemService paymentSystemServiceMock;
     
-    private PaymentSystemService paymentSystemServiceStub 
+    private PaymentSystemService paymentSystemServiceStub1 
             = new PaymentSystemService(){
         @Override
         public PaymentSystem getPaymentSystem(int systemId) {
@@ -28,12 +39,15 @@ public class PaymentServiceTest {
 
     @Before
     public void setUp() {
-        instance.setPaymentSystemService(paymentSystemServiceStub);
+        //MockitoAnnotations.initMocks(instance);
+        //instance.setPaymentSystemService(paymentSystemServiceMock);
+        Mockito.when(paymentSystemServiceMock.getPaymentSystem(anyInt())).thenReturn(PaymentSystem.GOOGLE_PAY);
+        Mockito.when(paymentSystemServiceMock.getPaymentSystem(1)).thenReturn(null);
     }
     
     @Test
     public void shouldReturnPaymentSystemWhenValidPaymentSystemId() {
-        PaymentSystem result = instance.getPaymentSystem(1);
+        PaymentSystem result = instance.getPaymentSystem(2);
         
         assertNotNull(result);
     }
