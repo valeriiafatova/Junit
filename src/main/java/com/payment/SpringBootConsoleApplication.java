@@ -10,9 +10,10 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class SpringBootConsoleApplication implements CommandLineRunner {
-    App app = new App();
-    private static Logger LOG = LoggerFactory
-            .getLogger(SpringBootConsoleApplication.class);
+    
+    @Autowired
+    private App app;
+    private static Logger LOG = LoggerFactory.getLogger(SpringBootConsoleApplication.class);
 
     public static void main(String[] args) {
         LOG.info("STARTING THE APPLICATION");

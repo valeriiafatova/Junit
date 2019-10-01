@@ -1,7 +1,9 @@
 package com.payment;
 
 import com.payment.impl.DefaultPaymentSystemService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class App {
 
     private PaymentService paymentService = new PaymentService(new DefaultPaymentSystemService());
