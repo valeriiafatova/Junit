@@ -2,10 +2,12 @@ package com.payment.impl;
 
 import com.payment.PaymentSystem;
 import com.payment.PaymentSystemService;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Component
 public class DefaultPaymentSystemService implements PaymentSystemService {
     
     public PaymentSystem getPaymentSystem3(int systemId){

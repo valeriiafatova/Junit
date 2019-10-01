@@ -1,5 +1,8 @@
 package com.payment;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PriceService {
     
     public void validatePrice(int price){

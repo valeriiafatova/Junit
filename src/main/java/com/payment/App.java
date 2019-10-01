@@ -1,26 +1,19 @@
 package com.payment;
 
-import com.payment.impl.DefaultPaymentSystemService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class App {
 
-    private PaymentService paymentService = new PaymentService(new DefaultPaymentSystemService());
-    private PriceService priceService = new PriceService();
-    private UserInputService userInputService = new UserInputService();
-    private UserViewService userViewService = new UserViewService();
-
-    public static void main(String[] args) {
-        App app = new App();
-        
-        app.setPaymentService(new PaymentService(new DefaultPaymentSystemService()));
-        app.setPriceService(new PriceService());
-        app.setUserInputService(new UserInputService());
-        app.setUserViewService(new UserViewService());
-        
-        app.processPayment();
-    }
+    @Autowired
+    private PaymentService paymentService;
+    @Autowired
+    private PriceService priceService;
+    @Autowired
+    private UserInputService userInputService;
+    @Autowired
+    private UserViewService userViewService;
 
     public void processPayment() {
         userViewService.showMessage("How you want to pay?\n1.ApplePay\n2.GooglePay\n3.Visa\n");

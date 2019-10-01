@@ -1,10 +1,14 @@
 package com.payment;
 
 import com.payment.impl.DefaultPaymentSystemService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
+@Component
 public class PaymentService {
+    @Autowired
     private PaymentSystemService paymentSystemService;
 
     public PaymentService(PaymentSystemService paymentSystemService) {
