@@ -2,18 +2,17 @@ package com.payment;
 
 import com.payment.impl.DefaultPaymentSystemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Arrays;
 
-@Component
+@Service
 public class PaymentService {
-    @Autowired
+    @Resource(name = "paymentServiceStub")
     private PaymentSystemService paymentSystemService;
-
-    public PaymentService(PaymentSystemService paymentSystemService) {
-        this.paymentSystemService = paymentSystemService;
-    }
 
     public PaymentSystem getPaymentSystem(int systemId) {
         if(!validatePaymentSystemId2(systemId)){
@@ -58,7 +57,8 @@ public class PaymentService {
         return (int) (Math.random() + 1) == 1 ? PaymentResult.SUCCESS : PaymentResult.FAILURE;
     }
 
-    public void setPaymentSystemService(DefaultPaymentSystemService paymentSystemService) {
+    @Required
+    public void setPaymentSystemService(PaymentSystemService paymentSystemService) {
         this.paymentSystemService = paymentSystemService;
     }
 }
