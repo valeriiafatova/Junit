@@ -5,7 +5,6 @@ import com.payment.impl.DefaultPaymentSystemService;
 public class App {
 
     private PaymentService paymentService;
-    private DefaultPaymentSystemService defaultPaymentSystemService;
     private PriceService priceService;
     private UserInputService userInputService;
     private UserViewService userViewService;
@@ -13,8 +12,7 @@ public class App {
     public static void main(String[] args) {
         App app = new App();
         
-        app.setPaymentService(new PaymentService());
-        app.setDefaultPaymentSystemService(new DefaultPaymentSystemService());
+        app.setPaymentService(new PaymentService(new DefaultPaymentSystemService()));
         app.setPriceService(new PriceService());
         app.setUserInputService(new UserInputService());
         app.setUserViewService(new UserViewService());
@@ -42,10 +40,6 @@ public class App {
 
     public void setPaymentService(PaymentService paymentService) {
         this.paymentService = paymentService;
-    }
-
-    public void setDefaultPaymentSystemService(DefaultPaymentSystemService defaultPaymentSystemService) {
-        this.defaultPaymentSystemService = defaultPaymentSystemService;
     }
 
     public void setPriceService(PriceService priceService) {

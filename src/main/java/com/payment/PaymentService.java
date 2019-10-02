@@ -1,10 +1,12 @@
 package com.payment;
 
 import com.payment.impl.DefaultPaymentSystemService;
+import org.apache.log4j.Logger;
 
 import java.util.Arrays;
 
 public class PaymentService {
+    private static final Logger LOG = Logger.getLogger(PaymentService.class);
     private PaymentSystemService paymentSystemService;
 
     public PaymentService(PaymentSystemService paymentSystemService) {
@@ -12,11 +14,15 @@ public class PaymentService {
     }
 
     public PaymentSystem getPaymentSystem(int systemId) {
-        if(!validatePaymentSystemId2(systemId)){
-            throw new IllegalArgumentException("System is is not valid!!!");
+//        if(!validatePaymentSystemId2(systemId)){
+//            throw new IllegalArgumentException("System is is not valid!!!");
+//        }
+        PaymentSystem paymentSystem = null;
+        try {
+            paymentSystem = paymentSystemService.getPaymentSystem(systemId);
+        }catch (IllegalArgumentException e){
+            LOG.error("invalid !! ", e);
         }
-
-        PaymentSystem paymentSystem = paymentSystemService.getPaymentSystem(systemId);
         
         if(paymentSystem == null){
             
