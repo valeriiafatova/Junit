@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class SpringBootConsoleApplication implements CommandLineRunner {
@@ -15,12 +16,15 @@ public class SpringBootConsoleApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         LOG.info("STARTING THE APPLICATION");
-        SpringApplication.run(SpringBootConsoleApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(SpringBootConsoleApplication.class, args);
+        App bean = context.getBean(App.class);
+        LOG.info("App : " + bean);
+        bean.processPayment();
         LOG.info("APPLICATION FINISHED");
     }
 
     @Override
     public void run(String... args) throws Exception {
-        app.processPayment();
+        //app.processPayment();
     }
 }
